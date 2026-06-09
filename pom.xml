@@ -39,6 +39,7 @@
         <!-- Standalone defaults -->
         <standalone.applicationName>${project.artifactId}</standalone.applicationName>
         <standalone.target></standalone.target>
+        <standalone.targetType>server</standalone.targetType>
         <standalone.muleVersion>${app.runtime}</standalone.muleVersion>
     </properties>
 
@@ -167,6 +168,7 @@
                                 <connectedAppGrantType>client_credentials</connectedAppGrantType>
                                 <applicationName>${standalone.applicationName}</applicationName>
                                 <target>${standalone.target}</target>
+                                <targetType>${standalone.targetType}</targetType>
                                 <muleVersion>${standalone.muleVersion}</muleVersion>
                             </armDeployment>
                         </configuration>
