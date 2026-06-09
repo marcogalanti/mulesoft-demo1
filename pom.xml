@@ -136,8 +136,6 @@
                                 <target>${rtf.target}</target>
                                 <muleVersion>${rtf.muleVersion}</muleVersion>
                                 <replicas>${rtf.replicas}</replicas>
-                                <cpuReserved>${rtf.cpuReserved}</cpuReserved>
-                                <memoryReserved>${rtf.memoryReserved}</memoryReserved>
                             </runtimeFabricDeployment>
                         </configuration>
                     </plugin>
