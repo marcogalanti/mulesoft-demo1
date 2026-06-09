@@ -127,6 +127,7 @@
                         <configuration>
                             <runtimeFabricDeployment>
                                 <uri>https://anypoint.mulesoft.com</uri>
+                                <provider>MC</provider>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
                                 <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
