@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>8b67a29a-a22d-4d92-89fe-87f99d911be5</groupId>
+    <artifactId>mule-hello-app</artifactId>
+    <version>1.0.0</version>
+    <packaging>mule-application</packaging>
+
+    <name>mule-hello-app</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <app.runtime>4.11.2</app.runtime>
+        <mule.maven.plugin.version>4.9.1</mule.maven.plugin.version>
+
+        <!-- Anypoint credentials (passed via -D flags from Jenkins) -->
+        <anypoint.client_id></anypoint.client_id>
+        <anypoint.client_secret></anypoint.client_secret>
+        <anypoint.org></anypoint.org>
+        <anypoint.environment>Sandbox</anypoint.environment>
+
+        <!-- CloudHub 2.0 defaults -->
+        <cloudhub2.applicationName>${project.artifactId}</cloudhub2.applicationName>
+        <cloudhub2.target>Cloudhub-US-East-1</cloudhub2.target>
+        <cloudhub2.replicas>1</cloudhub2.replicas>
+        <cloudhub2.vCores>0.1</cloudhub2.vCores>
+        <cloudhub2.muleVersion>${app.runtime}</cloudhub2.muleVersion>
+
+        <!-- Runtime Fabric defaults -->
+        <rtf.target></rtf.target>
+        <rtf.applicationName>${project.artifactId}</rtf.applicationName>
+        <rtf.replicas>1</rtf.replicas>
+        <rtf.vCores>0.1</rtf.vCores>
+        <rtf.muleVersion>${app.runtime}</rtf.muleVersion>
+
+        <!-- Standalone defaults -->
+        <standalone.applicationName>${project.artifactId}</standalone.applicationName>
+        <standalone.target></standalone.target>
+        <standalone.muleVersion>${app.runtime}</standalone.muleVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mule.connectors</groupId>
+            <artifactId>mule-http-connector</artifactId>
+            <version>1.9.3</version>
+            <classifier>mule-plugin</classifier>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.mule.tools.maven</groupId>
+                <artifactId>mule-maven-plugin</artifactId>
+                <version>${mule.maven.plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <classifier>mule-application</classifier>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- CloudHub 2.0 -->
+        <profile>
+            <id>cloudhub2</id>
+            <activation>
+                <property>
+                    <name>cloudhub2.applicationName</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.mule.tools.maven</groupId>
+                        <artifactId>mule-maven-plugin</artifactId>
+                        <version>${mule.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <cloudhub2Deployment>
+                                <uri>https://anypoint.mulesoft.com</uri>
+                                <provider>MC</provider>
+                                <environment>${anypoint.environment}</environment>
+                                <businessGroupId>${anypoint.org}</businessGroupId>
+                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                                <applicationName>${cloudhub2.applicationName}</applicationName>
+                                <target>${cloudhub2.target}</target>
+                                <muleVersion>${cloudhub2.muleVersion}</muleVersion>
+                                <replicas>${cloudhub2.replicas}</replicas>
+                                <vCores>${cloudhub2.vCores}</vCores>
+                            </cloudhub2Deployment>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Runtime Fabric -->
+        <profile>
+            <id>rtf</id>
+            <activation>
+                <property>
+                    <name>rtf.target</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.mule.tools.maven</groupId>
+                        <artifactId>mule-maven-plugin</artifactId>
+                        <version>${mule.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <runtimeFabricDeployment>
+                                <uri>https://anypoint.mulesoft.com</uri>
+                                <environment>${anypoint.environment}</environment>
+                                <businessGroupId>${anypoint.org}</businessGroupId>
+                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                                <applicationName>${rtf.applicationName}</applicationName>
+                                <target>${rtf.target}</target>
+                                <muleVersion>${rtf.muleVersion}</muleVersion>
+                                <replicas>${rtf.replicas}</replicas>
+                                <cores>${rtf.vCores}</cores>
+                            </runtimeFabricDeployment>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Standalone (ARM) -->
+        <profile>
+            <id>standalone</id>
+            <activation>
+                <property>
+                    <name>standalone.target</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.mule.tools.maven</groupId>
+                        <artifactId>mule-maven-plugin</artifactId>
+                        <version>${mule.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <armDeployment>
+                                <uri>https://anypoint.mulesoft.com</uri>
+                                <environment>${anypoint.environment}</environment>
+                                <businessGroupId>${anypoint.org}</businessGroupId>
+                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                                <applicationName>${standalone.applicationName}</applicationName>
+                                <target>${standalone.target}</target>
+                                <muleVersion>${standalone.muleVersion}</muleVersion>
+                            </armDeployment>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>anypoint-exchange-v3</id>
+            <name>Anypoint Exchange</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>https://repository.mulesoft.org/releases/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mulesoft-releases</id>
+            <name>MuleSoft Releases Repository</name>
+            <url>https://repository.mulesoft.org/releases/</url>
+            <layout>default</layout>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>anypoint-exchange-v3_</id>
+            <name>Anypoint Exchange</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/8b67a29a-a22d-4d92-89fe-87f99d911be5/maven</url>
+            <layout>default</layout>
+        </repository>
+    </distributionManagement>
+</project>
