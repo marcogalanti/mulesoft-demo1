@@ -33,7 +33,8 @@
         <rtf.target></rtf.target>
         <rtf.applicationName>${project.artifactId}</rtf.applicationName>
         <rtf.replicas>1</rtf.replicas>
-        <rtf.vCores>0.1</rtf.vCores>
+        <rtf.cpuReserved>500m</rtf.cpuReserved>
+        <rtf.memoryReserved>700Mi</rtf.memoryReserved>
         <rtf.muleVersion>${app.runtime}</rtf.muleVersion>
 
         <!-- Standalone defaults -->
@@ -135,7 +136,8 @@
                                 <target>${rtf.target}</target>
                                 <muleVersion>${rtf.muleVersion}</muleVersion>
                                 <replicas>${rtf.replicas}</replicas>
-                                <cores>${rtf.vCores}</cores>
+                                <cpuReserved>${rtf.cpuReserved}</cpuReserved>
+                                <memoryReserved>${rtf.memoryReserved}</memoryReserved>
                             </runtimeFabricDeployment>
                         </configuration>
                     </plugin>
