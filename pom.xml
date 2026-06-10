@@ -1,58 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    
     <groupId>8b67a29a-a22d-4d92-89fe-87f99d911be5</groupId>
     <artifactId>mule-hello-app</artifactId>
     <version>1.0.0</version>
     <packaging>mule-application</packaging>
-
+    
     <name>mule-hello-app</name>
-
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <app.runtime>4.11.2</app.runtime>
         <mule.maven.plugin.version>4.9.1</mule.maven.plugin.version>
-
+        
         <!-- Anypoint credentials (passed via -D flags from Jenkins) -->
-        <anypoint.client_id></anypoint.client_id>
-        <anypoint.client_secret></anypoint.client_secret>
-        <anypoint.org></anypoint.org>
+        <anypoint.client_id/>
+        <anypoint.client_secret/>
+        <anypoint.org/>
         <anypoint.environment>Sandbox</anypoint.environment>
-
+        
         <!-- CloudHub 2.0 defaults -->
         <cloudhub2.applicationName>${project.artifactId}</cloudhub2.applicationName>
         <cloudhub2.target>Cloudhub-US-East-1</cloudhub2.target>
         <cloudhub2.replicas>1</cloudhub2.replicas>
         <cloudhub2.vCores>0.1</cloudhub2.vCores>
         <cloudhub2.muleVersion>${app.runtime}</cloudhub2.muleVersion>
-
+        
         <!-- Runtime Fabric defaults -->
-        <rtf.target></rtf.target>
+        <rtf.target/>
         <rtf.applicationName>${project.artifactId}</rtf.applicationName>
         <rtf.replicas>1</rtf.replicas>
         <rtf.cpuReserved>500m</rtf.cpuReserved>
         <rtf.memoryReserved>700Mi</rtf.memoryReserved>
         <rtf.muleVersion>${app.runtime}</rtf.muleVersion>
-
+        
         <!-- Standalone defaults -->
         <standalone.applicationName>${project.artifactId}</standalone.applicationName>
-        <standalone.target></standalone.target>
+        <standalone.target/>
         <standalone.targetType>server</standalone.targetType>
         <standalone.muleVersion>${app.runtime}</standalone.muleVersion>
     </properties>
-
+    
     <dependencies>
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-http-connector</artifactId>
-            <version>1.9.3</version>
+            <version>1.11.3</version>
             <classifier>mule-plugin</classifier>
         </dependency>
     </dependencies>
-
+    
     <build>
         <plugins>
             <plugin>
@@ -71,7 +69,7 @@
             </plugin>
         </plugins>
     </build>
-
+    
     <profiles>
         <!-- CloudHub 2.0 -->
         <profile>
@@ -107,7 +105,7 @@
                 </plugins>
             </build>
         </profile>
-
+        
         <!-- Runtime Fabric (uses cloudhub2Deployment internally — RTF deploys via same API) -->
         <profile>
             <id>rtf</id>
@@ -142,7 +140,7 @@
                 </plugins>
             </build>
         </profile>
-
+        
         <!-- Standalone (ARM) -->
         <profile>
             <id>standalone</id>
@@ -177,7 +175,7 @@
             </build>
         </profile>
     </profiles>
-
+    
     <repositories>
         <repository>
             <id>anypoint-exchange-v3</id>
@@ -192,7 +190,7 @@
             <layout>default</layout>
         </repository>
     </repositories>
-
+    
     <pluginRepositories>
         <pluginRepository>
             <id>mulesoft-releases</id>
@@ -201,7 +199,7 @@
             <layout>default</layout>
         </pluginRepository>
     </pluginRepositories>
-
+    
     <distributionManagement>
         <repository>
             <id>anypoint-exchange-v3-cicd</id>
