@@ -101,7 +101,6 @@
                                 <target>${cloudhub2.target}</target>
                                 <muleVersion>${cloudhub2.muleVersion}</muleVersion>
                                 <replicas>${cloudhub2.replicas}</replicas>
-                                <vCores>${cloudhub2.vCores}</vCores>
                             </cloudhub2Deployment>
                         </configuration>
                     </plugin>
@@ -109,7 +108,7 @@
             </build>
         </profile>
 
-        <!-- Runtime Fabric -->
+        <!-- Runtime Fabric (uses cloudhub2Deployment internally — RTF deploys via same API) -->
         <profile>
             <id>rtf</id>
             <activation>
@@ -125,7 +124,7 @@
                         <version>${mule.maven.plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <runtimeFabricDeployment>
+                            <cloudhub2Deployment>
                                 <uri>https://anypoint.mulesoft.com</uri>
                                 <provider>MC</provider>
                                 <environment>${anypoint.environment}</environment>
@@ -137,7 +136,7 @@
                                 <target>${rtf.target}</target>
                                 <muleVersion>${rtf.muleVersion}</muleVersion>
                                 <replicas>${rtf.replicas}</replicas>
-                            </runtimeFabricDeployment>
+                            </cloudhub2Deployment>
                         </configuration>
                     </plugin>
                 </plugins>
