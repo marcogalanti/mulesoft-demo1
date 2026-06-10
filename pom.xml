@@ -94,9 +94,7 @@
                                 <provider>MC</provider>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
-                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
-                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
-                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                                <server>anypoint-exchange-v3-mg</server>
                                 <applicationName>${cloudhub2.applicationName}</applicationName>
                                 <target>${cloudhub2.target}</target>
                                 <muleVersion>${cloudhub2.muleVersion}</muleVersion>
@@ -130,9 +128,7 @@
                                 <provider>MC</provider>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
-                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
-                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
-                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                                <server>anypoint-exchange-v3-mg</server>
                                 <applicationName>${rtf.applicationName}</applicationName>
                                 <target>${rtf.target}</target>
                                 <muleVersion>${rtf.muleVersion}</muleVersion>
@@ -164,9 +160,7 @@
                                 <uri>https://anypoint.mulesoft.com</uri>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
-                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
-                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
-                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                                <server>anypoint-exchange-v3-mg</server>
                                 <applicationName>${standalone.applicationName}</applicationName>
                                 <target>${standalone.target}</target>
                                 <targetType>${standalone.targetType}</targetType>
