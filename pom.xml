@@ -94,7 +94,9 @@
                                 <provider>MC</provider>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
-                                <server>anypoint-exchange-v3-mg</server>
+                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
                                 <applicationName>${cloudhub2.applicationName}</applicationName>
                                 <target>${cloudhub2.target}</target>
                                 <muleVersion>${cloudhub2.muleVersion}</muleVersion>
@@ -128,7 +130,9 @@
                                 <provider>MC</provider>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
-                                <server>anypoint-exchange-v3-mg</server>
+                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
                                 <applicationName>${rtf.applicationName}</applicationName>
                                 <target>${rtf.target}</target>
                                 <muleVersion>${rtf.muleVersion}</muleVersion>
@@ -160,7 +164,9 @@
                                 <uri>https://anypoint.mulesoft.com</uri>
                                 <environment>${anypoint.environment}</environment>
                                 <businessGroupId>${anypoint.org}</businessGroupId>
-                                <server>anypoint-exchange-v3-mg</server>
+                                <connectedAppClientId>${anypoint.client_id}</connectedAppClientId>
+                                <connectedAppClientSecret>${anypoint.client_secret}</connectedAppClientSecret>
+                                <connectedAppGrantType>client_credentials</connectedAppGrantType>
                                 <applicationName>${standalone.applicationName}</applicationName>
                                 <target>${standalone.target}</target>
                                 <targetType>${standalone.targetType}</targetType>
@@ -199,7 +205,7 @@
 
     <distributionManagement>
         <repository>
-            <id>anypoint-exchange-v3_</id>
+            <id>anypoint-exchange-v3-cicd</id>
             <name>Anypoint Exchange</name>
             <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/8b67a29a-a22d-4d92-89fe-87f99d911be5/maven</url>
             <layout>default</layout>
