@@ -99,6 +99,7 @@
                                 <target>${cloudhub2.target}</target>
                                 <muleVersion>${cloudhub2.muleVersion}</muleVersion>
                                 <replicas>${cloudhub2.replicas}</replicas>
+                                <vCores>${cloudhub2.vCores}</vCores>
                             </cloudhub2Deployment>
                         </configuration>
                     </plugin>
